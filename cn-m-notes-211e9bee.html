@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>九游娱乐 · 常来常新</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background-color: #f0f2f5;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1120px;
+      width: 100%;
+    }
+
+    /* 主视觉卡片 */
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid #e6e9ed;
+      border-radius: 28px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+      padding: 2.8rem 2.4rem;
+      margin-bottom: 2.2rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #1b1f24;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title span {
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    .hero-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #3f4752;
+      max-width: 740px;
+    }
+
+    .hero-text a {
+      color: #1e3a5f;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #bcc6d4;
+      font-weight: 500;
+      transition: color 0.15s, text-decoration-color 0.15s;
+    }
+
+    .hero-text a:hover {
+      color: #0f1f33;
+      text-decoration-color: #1e3a5f;
+    }
+
+    .hero-meta {
+      display: inline-block;
+      margin-top: 1.4rem;
+      font-size: 0.95rem;
+      color: #6b7480;
+      background: #f4f6f9;
+      padding: 0.4rem 1rem 0.4rem 1.2rem;
+      border-radius: 100px;
+      border: 1px solid #e1e6ec;
+    }
+
+    .hero-meta::before {
+      content: "↻";
+      margin-right: 8px;
+      opacity: 0.6;
+    }
+
+    /* 两列布局：用途卡片 + 人群卡片 */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e6e9ed;
+      border-radius: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      padding: 1.8rem 1.6rem;
+      transition: box-shadow 0.15s, transform 0.1s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #1f2937;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card-title i {
+      font-style: normal;
+      background: #eef1f5;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: #3d4f66;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card li {
+      margin-bottom: 0.85rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #374151;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+
+    .card li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #9aa6b5;
+    }
+
+    .card p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #374151;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      background: #f2f5f9;
+      border-radius: 60px;
+      padding: 0.2rem 0.9rem;
+      font-size: 0.9rem;
+      color: #2d3a4c;
+      border: 1px solid #e4e9f0;
+    }
+
+    /* 自然链接段落 — 再次访问 收藏 持续关注 */
+    .story-card {
+      background: #ffffff;
+      border: 1px solid #e6e9ed;
+      border-radius: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      padding: 2rem 2rem 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .story-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #1f2937;
+      margin-bottom: 1.2rem;
+    }
+
+    .story-card p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #374151;
+      margin-bottom: 1rem;
+    }
+
+    .story-card p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .story-card a {
+      color: #1e3a5f;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #c8d0dc;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .story-card a:hover {
+      color: #0a1b2e;
+      text-decoration-color: #1e3a5f;
+    }
+
+    .story-highlight {
+      background: #f8fafc;
+      border-left: 4px solid #b3c0d1;
+      padding: 1rem 1.4rem;
+      border-radius: 0 16px 16px 0;
+      margin: 1.2rem 0 0.6rem;
+      font-size: 0.98rem;
+      color: #2e3a49;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #ffffff;
+      border: 1px solid #e6e9ed;
+      border-radius: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      padding: 1.6rem 2rem;
+      margin-top: 0.4rem;
+    }
+
+    .faq-mini h4 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #1f2937;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1f2a3a;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      color: #4b5563;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .faq-a a {
+      color: #1e3a5f;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: #c8d0dc;
+      font-weight: 450;
+    }
+
+    .faq-a a:hover {
+      color: #0b1b30;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+
+      .hero-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      .hero-text {
+        font-size: 1rem;
+      }
+
+      .story-card {
+        padding: 1.6rem 1.4rem;
+      }
+
+      .faq-mini {
+        padding: 1.2rem 1.4rem;
+      }
+
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.15rem;
+      }
+
+      .tag {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* 辅助分隔 */
+    .note-soft {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #8b95a5;
+      border-top: 1px solid #e1e6ec;
+      padding-top: 1.4rem;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 主视觉卡片 -->
+  <div class="hero-card">
+    <div class="hero-title">再次光临 · <span>九游娱乐</span></div>
+    <div class="hero-text">
+      <p>不论是忙碌间隙的小憩，还是周末午后的放松，有些地方总让人想回头再看一眼。<a href="https://cn-m-jiuyou.com">九游娱乐</a> 就是这样一个可以随时回来、常看常新的角落。没有繁琐的规则，也没有过度的喧哗，只有干净的信息和稳妥的安排。</p>
+    </div>
+    <div class="hero-meta">收藏备用 · 持续关注</div>
+  </div>
+
+  <!-- 两列卡片：用途 + 适合人群 -->
+  <div class="grid-2col">
+    <!-- 用途卡片 -->
+    <div class="card">
+      <div class="card-title"><i>⋆</i> 常见的用途</div>
+      <ul>
+        <li>快速了解当前有哪些娱乐动态或活动更新</li>
+        <li>作为日常信息聚合的起点，顺手浏览最新内容</li>
+        <li>将页面加入书签，方便下次直接回到同一位置</li>
+        <li>推荐给有同样兴趣的朋友，一起交流感受</li>
+      </ul>
+      <div class="tag-group">
+        <span class="tag">日常浏览</span>
+        <span class="tag">信息聚合</span>
+        <span class="tag">书签备用</span>
+      </div>
+    </div>
+
+    <!-- 适合人群卡片 -->
+    <div class="card">
+      <div class="card-title"><i>◈</i> 适合什么样的人</div>
+      <ul>
+        <li>习惯保留固定入口、喜欢定期回来看看的使用者</li>
+        <li>偏好简约界面、不想被多余弹窗打扰的访客</li>
+        <li>希望收藏一个长期稳定的信息页面的人</li>
+        <li>对娱乐资讯保持适度好奇，但不喜欢过度推送的用户</li>
+      </ul>
+      <div class="tag-group">
+        <span class="tag">固定访客</span>
+        <span class="tag">极简偏好</span>
+        <span class="tag">轻量关注</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 自然链接段落：再次访问、收藏、持续关注 -->
+  <div class="story-card">
+    <h3>把这里留作一个安静的锚点</h3>
+    <p>对于经常上网的人来说，浏览器的书签栏或收藏夹里，总有一些地址是被反复点开的。它们不一定是最花哨的，但往往是最顺手、最让人安心的。<a href="https://cn-m-jiuyou.com">九游娱乐</a> 就是这样的存在——不需要每次重新搜索，也不必担心内容变得面目全非。</p>
+    <p>收藏的本质，是为未来的自己留一条熟悉的路。当你某天忽然想起，想看看这里的动态或变化，打开书签就能直接到达。它不催促你，也不消耗你，只是安静地等在那里。</p>
+    <div class="story-highlight">
+      <strong>一个小建议：</strong> 如果你觉得这个页面值得保留，不妨现在就把它加入收藏夹（或浏览器书签）。下次再回来时，会省去很多翻找的时间。
+    </div>
+    <p style="margin-top: 1rem;">持续关注并不是绑定，而是给自己留一个选择。偶尔路过，或者定期看看，节奏完全由自己决定。</p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h4>一些简单的说明</h4>
+    <div class="faq-item">
+      <span class="faq-q">这个页面需要注册或登录吗？</span>
+      <span class="faq-a">不需要。直接通过浏览器访问即可，没有额外的注册门槛。别忘了把 <a href="https://cn-m-jiuyou.com">九游娱乐</a> 加入书签，下次更省事。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">内容会频繁变化吗？</span>
+      <span class="faq-a">整体风格和结构保持稳定，但具体信息会随着时间自然更新。常回来看看，总能发现一些细微的变化。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">适合用手机浏览器访问吗？</span>
+      <span class="faq-a">是的，页面在手机和电脑上都能正常显示，排版会自动适应屏幕宽度。</span>
+    </div>
+  </div>
+
+  <!-- 极简脚注 -->
+  <div class="note-soft">— 可收藏 · 可回看 · 不打扰 —</div>
+
+</div>
+</body>
+</html>
